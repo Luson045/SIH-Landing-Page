@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SIH — Demo Landing Page</title>
+  <meta name="description" content="Smart India Hackathon themed demo page with decorative UI and placeholder demo videos." />
+  <style>
+    :root{
+      --bg1: #031427;
+      --bg2: #092a45;
+      --accent: #00e5ff;
+      --accent2: #7b61ff;
+      --glass: rgba(255,255,255,0.06);
+      --card: rgba(255,255,255,0.03);
+      --neon: rgba(0,229,255,0.15);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    /* page layout */
+    html,body{height:100%;margin:0;background: radial-gradient(1200px 600px at 10% 10%, rgba(123,97,255,0.08), transparent), linear-gradient(180deg,var(--bg1),var(--bg2)); color:#e6f7ff}
+    .container{max-width:1200px;margin:0 auto;padding:36px}
+
+    /* header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),var(--accent));box-shadow:0 6px 30px rgba(123,97,255,0.18), inset 0 -8px 40px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#041129}
+    .brand h1{margin:0;font-size:20px;letter-spacing:0.6px}
+    .brand p{margin:0;font-size:12px;opacity:0.8}
+
+    /* navigation */
+    nav{display:flex;gap:10px}
+    .nav-btn{padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(6px);cursor:pointer;font-weight:600}
+    .nav-btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#021;box-shadow:0 8px 30px rgba(0,229,255,0.12)}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:26px;align-items:center}
+    .hero-card{padding:28px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 10px 40px rgba(2,8,23,0.6);border:1px solid rgba(255,255,255,0.04)}
+    .title{font-size:34px;margin:0 0 8px 0}
+    .lead{margin:0 0 18px 0;color:rgba(230,247,255,0.9);opacity:0.95}
+
+    /* decorative ribbons */
+    .ribbon{position:relative;padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent2));display:inline-block;color:#021;font-weight:700;box-shadow:0 8px 30px rgba(123,97,255,0.12)}
+
+    /* special tiles */
+    .tiles{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .tile{flex:1 1 170px;padding:14px;border-radius:12px;background:var(--card);backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.03)}
+    .tile h3{margin:0;font-size:14px}
+    .tile p{margin:6px 0 0;font-size:13px;color:rgba(230,247,255,0.8)}
+
+    /* right panel */
+    .panel{position:relative;padding:18px;border-radius:16px;height:100%;display:flex;flex-direction:column;gap:12px}
+    .panel .stat{display:flex;align-items:center;justify-content:space-between}
+    .big{font-size:28px;font-weight:800}
+    .sm{font-size:12px;color:rgba(230,247,255,0.8)}
+
+    /* particle-ish animated background in card */
+    .particles{position:absolute;inset:0;border-radius:16px;pointer-events:none;opacity:0.12}
+    .particle{position:absolute;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));filter:blur(3px);animation:float 8s linear infinite}
+    @keyframes float{0%{transform:translateY(0) scale(0.6)}50%{transform:translateY(-60px) scale(1)}100%{transform:translateY(0) scale(0.6)}}
+
+    /* videos */
+    .videos{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .video-card{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(255,255,255,0.02));}
+    .video-card iframe{width:100%;height:210px;border:0;display:block}
+    .video-card .meta{padding:10px}
+
+    /* fancy footer */
+    footer{margin-top:40px;padding:20px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:flex;justify-content:space-between;align-items:center}
+
+    /* floating badges */
+    .badge{position:fixed;right:22px;bottom:22px;background:linear-gradient(180deg,var(--accent),var(--accent2));color:#021;padding:12px 14px;border-radius:999px;font-weight:800;box-shadow:0 10px 40px rgba(0,229,255,0.12)}
+
+    /* responsive */
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.videos{grid-template-columns:1fr 1fr}.panel{order:2}}
+    @media(max-width:640px){.videos{grid-template-columns:1fr}.nav-btn{display:none}.container{padding:18px}}
+
+    /* neon outline headings */
+    .neon{color:transparent;background-clip:text;-webkit-background-clip:text;background-image:linear-gradient(90deg,var(--accent),var(--accent2));position:relative}
+    .neon:after{content:"";position:absolute;left:0;right:0;top:100%;height:6px;background:linear-gradient(90deg,var(--accent),transparent);filter:blur(12px);opacity:0.5}
+
+    /* subtle animated underline for CTA */
+    .cta{display:inline-block;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.06);text-decoration:none;font-weight:700}
+    .cta:hover{transform:translateY(-4px)}
+
+    /* cool grid overlay */
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(transparent 50%, rgba(255,255,255,0.01) 50%), linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.008) 50%);background-size:1px 1px;mix-blend-mode:overlay}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">SIH</div>
+        <div>
+          <h1>Smart India Hackathon — Demo</h1>
+          <p>Official-looking themed landing page (demo)</p>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn">About</button>
+        <button class="nav-btn">Challenges</button>
+        <button class="nav-btn">Teams</button>
+        <button class="nav-btn primary">Register (Demo)</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <div style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+          <div>
+            <div class="ribbon">SIH 2025 — Innovation Stage</div>
+            <h2 class="title neon">Hack for India: Build, Ship, Impact</h2>
+            <p class="lead">An ornamental demo page themed for Smart India Hackathon. Use this as a starting point for your event microsite — sections, badges, embedded demo videos and a sleek modern design.</p>
+            <div style="margin-top:14px">
+              <a class="cta" href="#videos">Watch Demos</a>
+              <a class="cta" style="margin-left:12px" href="#teams">See Top Teams</a>
+            </div>
+          </div>
+          <div style="width:110px;text-align:right">
+            <div style="font-size:12px;opacity:0.9">Live Demo</div>
+            <div style="font-weight:900;font-size:28px;margin-top:6px">42</div>
+            <div style="font-size:11px;opacity:0.8;margin-top:6px">submissions</div>
+          </div>
+        </div>
+
+        <div class="tiles">
+          <div class="tile">
+            <h3>Tracks</h3>
+            <p>AI · Healthcare · Agri · Civic Tech</p>
+          </div>
+          <div class="tile">
+            <h3>Mentors</h3>
+            <p>50+ industry & academic mentors</p>
+          </div>
+          <div class="tile">
+            <h3>Prizes</h3>
+            <p>Seed funding • Incubation • Internships</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="panel hero-card">
+        <div class="particles" aria-hidden="true">
+          <div class="particle" style="left:12%;top:18%;animation-duration:9s;width:14px;height:14px"></div>
+          <div class="particle" style="left:74%;top:12%;animation-duration:7s;width:10px;height:10px"></div>
+          <div class="particle" style="left:42%;top:62%;animation-duration:11s;width:16px;height:16px"></div>
+        </div>
+
+        <div class="stat">
+          <div>
+            <div class="sm">Hackathon Status</div>
+            <div class="big">Ongoing</div>
+          </div>
+          <div style="text-align:right">
+            <div class="sm">Starts</div>
+            <div style="font-weight:800">Oct 10, 2025</div>
+          </div>
+        </div>
+
+        <div style="height:8px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px;margin-top:8px"></div>
+
+        <div style="margin-top:10px;display:flex;gap:10px">
+          <div style="flex:1;padding:10px;border-radius:12px;background:var(--glass);text-align:center">
+            <div style="font-weight:800;font-size:18px">12</div>
+            <div style="font-size:12px;opacity:0.8">Active Challenges</div>
+          </div>
+          <div style="flex:1;padding:10px;border-radius:12px;background:var(--glass);text-align:center">
+            <div style="font-weight:800;font-size:18px">6</div>
+            <div style="font-size:12px;opacity:0.8">Partner Organisations</div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto">
+          <small style="opacity:0.85">Powered by — SIH demo UI • built for showcasing visual ideas</small>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Videos -->
+    <section id="videos">
+      <h3 style="margin-top:28px">Featured Demos</h3>
+      <div class="videos">
+        <div class="video-card">
+          <!-- Big Buck Bunny (sample open movie) -->
+          <iframe src="https://www.youtube.com/embed/aqz-KE-bpKQ" title="Big Buck Bunny demo" allowfullscreen></iframe>
+          <div class="meta"><strong>Demo 1 — Big Buck Bunny (placeholder)</strong><p style="margin:6px 0 0;font-size:13px;opacity:0.85">A sample placeholder video from the internet. Replace with your recorded demo.</p></div>
+        </div>
+
+        <div class="video-card">
+          <!-- Tears of Steel (placeholder) -->
+          <iframe src="https://www.youtube.com/embed/EXeTwQWrcwY" title="Tears of Steel demo" allowfullscreen></iframe>
+          <div class="meta"><strong>Demo 2 — Tears of Steel (placeholder)</strong><p style="margin:6px 0 0;font-size:13px;opacity:0.85">Another placeholder — swap in your project showcase.</p></div>
+        </div>
+
+        <div class="video-card">
+          <!-- Sample adventure movie trailer (placeholder) -->
+          <iframe src="https://www.youtube.com/embed/YE7VzlLtp-4" title="Sintel demo" allowfullscreen></iframe>
+          <div class="meta"><strong>Demo 3 — Sintel (placeholder)</strong><p style="margin:6px 0 0;font-size:13px;opacity:0.85">Third example demo video embed for layout testing.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teams showcase -->
+    <section id="teams" style="margin-top:26px">
+      <h3>Top Teams (Preview)</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
+        <div class="hero-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">Team AgriSense</h4>
+          <p style="margin:0;font-size:13px;opacity:0.9">IoT + ML solution to optimize irrigation</p>
+        </div>
+        <div class="hero-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">Team MediAssist</h4>
+          <p style="margin:0;font-size:13px;opacity:0.9">Telehealth triage with smart routing</p>
+        </div>
+        <div class="hero-card" style="padding:12px">
+          <h4 style="margin:0 0 6px">Team CivicMaps</h4>
+          <p style="margin:0;font-size:13px;opacity:0.9">Citizen reporting mapped to local authorities</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>
+        <strong>SIH Demo</strong><div style="font-size:12px;opacity:0.85">Made with ❤️ — theme for events & dashboards</div>
+      </div>
+      <div style="text-align:right;font-size:13px">Need changes? Edit the HTML and replace the demo videos with your own embeds.</div>
+    </footer>
+
+    <div class="badge">Apply Now</div>
+  </div>
+
+  <!-- small helpful script to make the page feel alive (purely client side) -->
+  <script>
+    // small randomizer for the stat numbers (for demo only)
+    document.addEventListener('DOMContentLoaded',()=>{
+      const live = document.querySelector('.hero .big');
+      if(live){
+        let v = 42;
+        setInterval(()=>{
+          v += Math.floor(Math.random()*3-1);
+          if(v<2) v=2;
+          live.textContent = v;
+        },2500);
+      }
+    });
+  </script>
+</body>
+</html>
